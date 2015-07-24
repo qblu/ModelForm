@@ -9,7 +9,14 @@
 /* Begin PBXBuildFile section */
 		FB1E7E651B62867A00F15B16 /* ModelForm.h in Headers */ = {isa = PBXBuildFile; fileRef = FB1E7E641B62867A00F15B16 /* ModelForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FB1E7E6B1B62867A00F15B16 /* ModelForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E7E5F1B62867A00F15B16 /* ModelForm.framework */; };
-		FB1E7E721B62867A00F15B16 /* ModelFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E711B62867A00F15B16 /* ModelFormTests.swift */; };
+		FB1E7E7D1B6286D600F15B16 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E7C1B6286D600F15B16 /* Dog.swift */; };
+		FB1E7E861B628CCD00F15B16 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E7E841B628CB400F15B16 /* Nimble.framework */; };
+		FB1E7E871B628CCF00F15B16 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E7E821B628CAA00F15B16 /* Quick.framework */; };
+		FB1E7E891B628D0200F15B16 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E7E841B628CB400F15B16 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FB1E7E8A1B628D0200F15B16 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB1E7E821B628CAA00F15B16 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FB1E7E8C1B628D4600F15B16 /* ModelFormSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */; };
+		FB1E7E8E1B62922E00F15B16 /* ModelForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */; };
+		FB1E7E901B62AC1800F15B16 /* ReflectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,13 +29,34 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FB1E7E881B628CD800F15B16 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FB1E7E891B628D0200F15B16 /* Nimble.framework in Copy Frameworks */,
+				FB1E7E8A1B628D0200F15B16 /* Quick.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		FB1E7E5F1B62867A00F15B16 /* ModelForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ModelForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1E7E631B62867A00F15B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB1E7E641B62867A00F15B16 /* ModelForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForm.h; sourceTree = "<group>"; };
 		FB1E7E6A1B62867A00F15B16 /* ModelFormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelFormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1E7E701B62867A00F15B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB1E7E711B62867A00F15B16 /* ModelFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFormTests.swift; sourceTree = "<group>"; };
+		FB1E7E7C1B6286D600F15B16 /* Dog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		FB1E7E801B628C2C00F15B16 /* Cartfile.private */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
+		FB1E7E821B628CAA00F15B16 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		FB1E7E841B628CB400F15B16 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormSpec.swift; sourceTree = "<group>"; };
+		FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelForm.swift; sourceTree = "<group>"; };
+		FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectionUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +72,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB1E7E6B1B62867A00F15B16 /* ModelForm.framework in Frameworks */,
+				FB1E7E861B628CCD00F15B16 /* Nimble.framework in Frameworks */,
+				FB1E7E871B628CCF00F15B16 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,9 +83,11 @@
 		FB1E7E551B62867A00F15B16 = {
 			isa = PBXGroup;
 			children = (
+				FB1E7E801B628C2C00F15B16 /* Cartfile.private */,
 				FB1E7E611B62867A00F15B16 /* ModelForm */,
 				FB1E7E6E1B62867A00F15B16 /* ModelFormTests */,
 				FB1E7E601B62867A00F15B16 /* Products */,
+				FB1E7E811B628C6C00F15B16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +105,8 @@
 			children = (
 				FB1E7E641B62867A00F15B16 /* ModelForm.h */,
 				FB1E7E621B62867A00F15B16 /* Supporting Files */,
+				FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */,
+				FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */,
 			);
 			path = ModelForm;
 			sourceTree = "<group>";
@@ -88,8 +122,9 @@
 		FB1E7E6E1B62867A00F15B16 /* ModelFormTests */ = {
 			isa = PBXGroup;
 			children = (
-				FB1E7E711B62867A00F15B16 /* ModelFormTests.swift */,
+				FB1E7E7B1B6286A100F15B16 /* TestModels */,
 				FB1E7E6F1B62867A00F15B16 /* Supporting Files */,
+				FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */,
 			);
 			path = ModelFormTests;
 			sourceTree = "<group>";
@@ -100,6 +135,23 @@
 				FB1E7E701B62867A00F15B16 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB1E7E7B1B6286A100F15B16 /* TestModels */ = {
+			isa = PBXGroup;
+			children = (
+				FB1E7E7C1B6286D600F15B16 /* Dog.swift */,
+			);
+			path = TestModels;
+			sourceTree = "<group>";
+		};
+		FB1E7E811B628C6C00F15B16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB1E7E841B628CB400F15B16 /* Nimble.framework */,
+				FB1E7E821B628CAA00F15B16 /* Quick.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +193,7 @@
 				FB1E7E661B62867A00F15B16 /* Sources */,
 				FB1E7E671B62867A00F15B16 /* Frameworks */,
 				FB1E7E681B62867A00F15B16 /* Resources */,
+				FB1E7E881B628CD800F15B16 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,6 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB1E7E901B62AC1800F15B16 /* ReflectionUtils.swift in Sources */,
+				FB1E7E8E1B62922E00F15B16 /* ModelForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +271,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB1E7E721B62867A00F15B16 /* ModelFormTests.swift in Sources */,
+				FB1E7E8C1B628D4600F15B16 /* ModelFormSpec.swift in Sources */,
+				FB1E7E7D1B6286D600F15B16 /* Dog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,25 +379,36 @@
 		FB1E7E761B62867A00F15B16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ModelForm/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		FB1E7E771B62867A00F15B16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ModelForm/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -356,6 +423,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -373,6 +441,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ModelFormTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
