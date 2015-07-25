@@ -20,9 +20,9 @@ class ModelFormSpec: QuickSpec {
             var model: Any? = nil
             var viewController: UIViewController? = nil
             
-            func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormActor modelFormActor: ModelFormActor) {
+            func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormController formController: ModelFormController) {
                 self.model = model
-                if let modelFormViewController = modelFormActor as? UIViewController {
+                if let modelFormViewController = formController as? UIViewController {
                     self.viewController = modelFormViewController
                 }
             }
@@ -57,19 +57,19 @@ class ModelFormSpec: QuickSpec {
                     
                     let testDelegate = TestDelegate()
                     let modelForm = ModelForm(model:dog, delegate: testDelegate, modelAdapter:DogModelAdapter())
-                    let modelFormActor = modelForm.modelFormActor
+                    let formController = modelForm.formController
                     
                     
-                    modelFormActor.saveFormToModel()
+                    formController.saveFormToModel()
                     // ensure the test delegate got what it expected
                     expect(testDelegate.model).toNot(beNil())
                     expect(testDelegate.viewController).toNot(beNil())
                     
                     // update the value using the actor
-                    modelFormActor.setFormPropertyValue("German Shepherd", forPropertyNamed: "breed")
+                    formController.setFormPropertyValue("German Shepherd", forPropertyNamed: "breed")
 
                     // save the change
-                    modelFormActor.saveFormToModel()
+                    formController.saveFormToModel()
                     
                     // check the new dog
                     if let dog2 = testDelegate.model as? Dog {
@@ -81,9 +81,9 @@ class ModelFormSpec: QuickSpec {
                     
                     // ensure the viewController does the right stuff, too
                     if let viewController = testDelegate.viewController {
-                        (viewController as! ModelFormActor).setFormPropertyValue("Mutt", forPropertyNamed:"breed")
+                        (viewController as! ModelFormController).setFormPropertyValue("Mutt", forPropertyNamed:"breed")
                         // save the change
-                        (viewController as! ModelFormActor).saveFormToModel()
+                        (viewController as! ModelFormController).saveFormToModel()
                         expect((testDelegate.model as! Dog).breed).to(equal("Mutt"))
                     } else {
                         fail("couldn't get the viewController")

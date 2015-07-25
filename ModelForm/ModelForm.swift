@@ -8,11 +8,13 @@
 
 import Foundation
 
+/// Receives delegation of model change events
 public protocol ModelFormDelegate {
-    func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormActor modelFormActor: ModelFormActor)
+    func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormController formController: ModelFormController)
 }
 
-public protocol ModelFormActor {
+///
+public protocol ModelFormController {
     func setModel(model: Any, andModelForm modelForm: ModelForm)
     func setFormPropertyValue(value:Any, forPropertyNamed name: String)
     func saveFormToModel()
@@ -29,7 +31,7 @@ protocol ModelFormSerializable {
 
 public struct ModelForm {
     
-    class ModelFormViewController: UIViewController, ModelFormActor {
+    class ModelFormViewController: UIViewController, ModelFormController {
         
         private var modelForm: ModelForm!
         private var model: Any!
@@ -78,7 +80,7 @@ public struct ModelForm {
             let updatedModel = self.modelForm.modelAdapter.initializeModel(updatedPropertyMap)
             
             // tell delegate to save changes
-            self.modelForm.delegate.modelForm(self.modelForm, didSaveModel: updatedModel, fromModelFormActor: self)
+            self.modelForm.delegate.modelForm(self.modelForm, didSaveModel: updatedModel, fromModelFormController: self)
         }
         
       
@@ -108,18 +110,18 @@ public struct ModelForm {
     
     public let delegate: ModelFormDelegate
     public let model: Any
-    public let modelFormActor: ModelFormActor
+    public let formController: ModelFormController
     public let modelAdapter: ModelFormModelAdapter
     public let modelPropertyMirrorMap: [String: ModelPropertyMirror]
    
     
-    public init(model: Any, delegate: ModelFormDelegate, actor: ModelFormActor = ModelFormViewController(), modelAdapter: ModelFormModelAdapter) {
+    public init(model: Any, delegate: ModelFormDelegate, actor: ModelFormController = ModelFormViewController(), modelAdapter: ModelFormModelAdapter) {
         self.model = model
         self.delegate = delegate
-        self.modelFormActor = actor
+        self.formController = actor
         self.modelAdapter = modelAdapter
         self.modelPropertyMirrorMap = ModelForm.reflectOnModel(model)
-        self.modelFormActor.setModel(self.model, andModelForm: self)
+        self.formController.setModel(self.model, andModelForm: self)
         
     }
 
