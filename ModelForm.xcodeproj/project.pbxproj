@@ -17,6 +17,15 @@
 		FB1E7E8C1B628D4600F15B16 /* ModelFormSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */; };
 		FB1E7E8E1B62922E00F15B16 /* ModelForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */; };
 		FB1E7E901B62AC1800F15B16 /* ReflectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */; };
+		FB4DDFB81B666FE30000FF28 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */; };
+		FB4DDFB91B666FE30000FF28 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */; };
+		FB4DDFBB1B66701C0000FF28 /* CleanroomLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FB4DDFBC1B66701C0000FF28 /* CleanroomASL.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FB4DDFBE1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFBD1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift */; };
+		FB4DDFBF1B6674C50000FF28 /* CleanroomLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FB4DDFC01B6674C50000FF28 /* CleanroomASL.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FB4DDFC21B6675000000FF28 /* ModelFormLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFC11B6675000000FF28 /* ModelFormLogger.swift */; };
+		FB4DDFC61B667E9E0000FF28 /* ModelFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFC51B667E9E0000FF28 /* ModelFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +45,22 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FB4DDFBF1B6674C50000FF28 /* CleanroomLogger.framework in Copy Frameworks */,
+				FB4DDFC01B6674C50000FF28 /* CleanroomASL.framework in Copy Frameworks */,
 				FB1E7E891B628D0200F15B16 /* Nimble.framework in Copy Frameworks */,
 				FB1E7E8A1B628D0200F15B16 /* Quick.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4DDFBA1B6670040000FF28 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FB4DDFBB1B66701C0000FF28 /* CleanroomLogger.framework in Copy Frameworks */,
+				FB4DDFBC1B66701C0000FF28 /* CleanroomASL.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +80,12 @@
 		FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormSpec.swift; sourceTree = "<group>"; };
 		FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelForm.swift; sourceTree = "<group>"; };
 		FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectionUtils.swift; sourceTree = "<group>"; };
+		FB4DDFB31B666F170000FF28 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/iOS/CleanroomLogger.framework; sourceTree = "<group>"; };
+		FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomASL.framework; path = Carthage/Build/iOS/CleanroomASL.framework; sourceTree = "<group>"; };
+		FB4DDFBD1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormTestsQuickSpecConfiguration.swift; sourceTree = "<group>"; };
+		FB4DDFC11B6675000000FF28 /* ModelFormLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormLogger.swift; sourceTree = "<group>"; };
+		FB4DDFC51B667E9E0000FF28 /* ModelFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB4DDFB81B666FE30000FF28 /* CleanroomLogger.framework in Frameworks */,
+				FB4DDFB91B666FE30000FF28 /* CleanroomASL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +114,7 @@
 		FB1E7E551B62867A00F15B16 = {
 			isa = PBXGroup;
 			children = (
+				FB4DDFB31B666F170000FF28 /* Cartfile */,
 				FB1E7E801B628C2C00F15B16 /* Cartfile.private */,
 				FB1E7E611B62867A00F15B16 /* ModelForm */,
 				FB1E7E6E1B62867A00F15B16 /* ModelFormTests */,
@@ -106,6 +138,8 @@
 				FB1E7E641B62867A00F15B16 /* ModelForm.h */,
 				FB1E7E621B62867A00F15B16 /* Supporting Files */,
 				FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */,
+				FB4DDFC11B6675000000FF28 /* ModelFormLogger.swift */,
+				FB4DDFC51B667E9E0000FF28 /* ModelFormViewController.swift */,
 				FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */,
 			);
 			path = ModelForm;
@@ -125,6 +159,7 @@
 				FB1E7E7B1B6286A100F15B16 /* TestModels */,
 				FB1E7E6F1B62867A00F15B16 /* Supporting Files */,
 				FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */,
+				FB4DDFBD1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift */,
 			);
 			path = ModelFormTests;
 			sourceTree = "<group>";
@@ -148,6 +183,8 @@
 		FB1E7E811B628C6C00F15B16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */,
+				FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */,
 				FB1E7E841B628CB400F15B16 /* Nimble.framework */,
 				FB1E7E821B628CAA00F15B16 /* Quick.framework */,
 			);
@@ -176,6 +213,7 @@
 				FB1E7E5B1B62867A00F15B16 /* Frameworks */,
 				FB1E7E5C1B62867A00F15B16 /* Headers */,
 				FB1E7E5D1B62867A00F15B16 /* Resources */,
+				FB4DDFBA1B6670040000FF28 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,7 +300,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB4DDFC61B667E9E0000FF28 /* ModelFormViewController.swift in Sources */,
 				FB1E7E901B62AC1800F15B16 /* ReflectionUtils.swift in Sources */,
+				FB4DDFC21B6675000000FF28 /* ModelFormLogger.swift in Sources */,
 				FB1E7E8E1B62922E00F15B16 /* ModelForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB4DDFBE1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift in Sources */,
 				FB1E7E8C1B628D4600F15B16 /* ModelFormSpec.swift in Sources */,
 				FB1E7E7D1B6286D600F15B16 /* Dog.swift in Sources */,
 			);
@@ -468,6 +509,7 @@
 				FB1E7E771B62867A00F15B16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FB1E7E781B62867A00F15B16 /* Build configuration list for PBXNativeTarget "ModelFormTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +518,7 @@
 				FB1E7E7A1B62867A00F15B16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

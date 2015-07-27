@@ -1,2 +1,4 @@
+github "emaloney/CleanroomASL" "1.1.3"
+github "emaloney/CleanroomLogger" "1.3.3"
 github "Quick/Nimble" "v1.0.0"
 github "Quick/Quick" "v0.3.1"
