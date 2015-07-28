@@ -26,6 +26,16 @@
 		FB4DDFC01B6674C50000FF28 /* CleanroomASL.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FB4DDFC21B6675000000FF28 /* ModelFormLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFC11B6675000000FF28 /* ModelFormLogger.swift */; };
 		FB4DDFC61B667E9E0000FF28 /* ModelFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFC51B667E9E0000FF28 /* ModelFormViewController.swift */; };
+		FB4DDFCF1B670BCF0000FF28 /* PropertyTypeFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFCE1B670BCF0000FF28 /* PropertyTypeFormField.swift */; };
+		FB4DDFD11B670C6D0000FF28 /* StringTypeFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD01B670C6D0000FF28 /* StringTypeFormField.swift */; };
+		FB4DDFD41B670DB60000FF28 /* StringTypeFormFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD31B670DB60000FF28 /* StringTypeFormFieldSpec.swift */; };
+		FB4DDFD61B6715F50000FF28 /* IntTypeFormFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD51B6715F50000FF28 /* IntTypeFormFieldSpec.swift */; };
+		FB4DDFD81B671C860000FF28 /* IntTypeFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD71B671C860000FF28 /* IntTypeFormField.swift */; };
+		FB4DDFDA1B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD91B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift */; };
+		FB5A2E151B67DE73009E7177 /* ModelFormValidationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A2E141B67DE73009E7177 /* ModelFormValidationItem.swift */; };
+		FB5A2E171B67DE9A009E7177 /* ModelFormValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A2E161B67DE9A009E7177 /* ModelFormValidationResult.swift */; };
+		FBC615AB1B673D7800A529FF /* BoolTypeFormFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC615AA1B673D7800A529FF /* BoolTypeFormFieldSpec.swift */; };
+		FBC615AD1B673EBD00A529FF /* BoolTypFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC615AC1B673EBD00A529FF /* BoolTypFormField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +96,16 @@
 		FB4DDFBD1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormTestsQuickSpecConfiguration.swift; sourceTree = "<group>"; };
 		FB4DDFC11B6675000000FF28 /* ModelFormLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormLogger.swift; sourceTree = "<group>"; };
 		FB4DDFC51B667E9E0000FF28 /* ModelFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormViewController.swift; sourceTree = "<group>"; };
+		FB4DDFCE1B670BCF0000FF28 /* PropertyTypeFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTypeFormField.swift; sourceTree = "<group>"; };
+		FB4DDFD01B670C6D0000FF28 /* StringTypeFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTypeFormField.swift; sourceTree = "<group>"; };
+		FB4DDFD31B670DB60000FF28 /* StringTypeFormFieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTypeFormFieldSpec.swift; sourceTree = "<group>"; };
+		FB4DDFD51B6715F50000FF28 /* IntTypeFormFieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTypeFormFieldSpec.swift; sourceTree = "<group>"; };
+		FB4DDFD71B671C860000FF28 /* IntTypeFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTypeFormField.swift; sourceTree = "<group>"; };
+		FB4DDFD91B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTypeFormFieldFactory.swift; sourceTree = "<group>"; };
+		FB5A2E141B67DE73009E7177 /* ModelFormValidationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormValidationItem.swift; sourceTree = "<group>"; };
+		FB5A2E161B67DE9A009E7177 /* ModelFormValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormValidationResult.swift; sourceTree = "<group>"; };
+		FBC615AA1B673D7800A529FF /* BoolTypeFormFieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolTypeFormFieldSpec.swift; sourceTree = "<group>"; };
+		FBC615AC1B673EBD00A529FF /* BoolTypFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolTypFormField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,11 +156,13 @@
 			isa = PBXGroup;
 			children = (
 				FB1E7E641B62867A00F15B16 /* ModelForm.h */,
-				FB1E7E621B62867A00F15B16 /* Supporting Files */,
+				FB4DDFCD1B670B8F0000FF28 /* PropertyTypeFormFields */,
+				FB5A2E131B67DE73009E7177 /* Validation */,
 				FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */,
 				FB4DDFC11B6675000000FF28 /* ModelFormLogger.swift */,
 				FB4DDFC51B667E9E0000FF28 /* ModelFormViewController.swift */,
 				FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */,
+				FB1E7E621B62867A00F15B16 /* Supporting Files */,
 			);
 			path = ModelForm;
 			sourceTree = "<group>";
@@ -156,6 +178,8 @@
 		FB1E7E6E1B62867A00F15B16 /* ModelFormTests */ = {
 			isa = PBXGroup;
 			children = (
+				FB5A2E0F1B67DE3A009E7177 /* Validation */,
+				FB4DDFD21B670DA00000FF28 /* PropertyTypeFormFields */,
 				FB1E7E7B1B6286A100F15B16 /* TestModels */,
 				FB1E7E6F1B62867A00F15B16 /* Supporting Files */,
 				FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */,
@@ -189,6 +213,44 @@
 				FB1E7E821B628CAA00F15B16 /* Quick.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB4DDFCD1B670B8F0000FF28 /* PropertyTypeFormFields */ = {
+			isa = PBXGroup;
+			children = (
+				FBC615AC1B673EBD00A529FF /* BoolTypFormField.swift */,
+				FB4DDFD71B671C860000FF28 /* IntTypeFormField.swift */,
+				FB4DDFCE1B670BCF0000FF28 /* PropertyTypeFormField.swift */,
+				FB4DDFD91B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift */,
+				FB4DDFD01B670C6D0000FF28 /* StringTypeFormField.swift */,
+			);
+			path = PropertyTypeFormFields;
+			sourceTree = "<group>";
+		};
+		FB4DDFD21B670DA00000FF28 /* PropertyTypeFormFields */ = {
+			isa = PBXGroup;
+			children = (
+				FBC615AA1B673D7800A529FF /* BoolTypeFormFieldSpec.swift */,
+				FB4DDFD51B6715F50000FF28 /* IntTypeFormFieldSpec.swift */,
+				FB4DDFD31B670DB60000FF28 /* StringTypeFormFieldSpec.swift */,
+			);
+			path = PropertyTypeFormFields;
+			sourceTree = "<group>";
+		};
+		FB5A2E0F1B67DE3A009E7177 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		FB5A2E131B67DE73009E7177 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				FB5A2E141B67DE73009E7177 /* ModelFormValidationItem.swift */,
+				FB5A2E161B67DE9A009E7177 /* ModelFormValidationResult.swift */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,10 +362,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB5A2E171B67DE9A009E7177 /* ModelFormValidationResult.swift in Sources */,
+				FB4DDFCF1B670BCF0000FF28 /* PropertyTypeFormField.swift in Sources */,
 				FB4DDFC61B667E9E0000FF28 /* ModelFormViewController.swift in Sources */,
+				FBC615AD1B673EBD00A529FF /* BoolTypFormField.swift in Sources */,
+				FB5A2E151B67DE73009E7177 /* ModelFormValidationItem.swift in Sources */,
 				FB1E7E901B62AC1800F15B16 /* ReflectionUtils.swift in Sources */,
 				FB4DDFC21B6675000000FF28 /* ModelFormLogger.swift in Sources */,
+				FB4DDFDA1B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift in Sources */,
 				FB1E7E8E1B62922E00F15B16 /* ModelForm.swift in Sources */,
+				FB4DDFD11B670C6D0000FF28 /* StringTypeFormField.swift in Sources */,
+				FB4DDFD81B671C860000FF28 /* IntTypeFormField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +380,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBC615AB1B673D7800A529FF /* BoolTypeFormFieldSpec.swift in Sources */,
+				FB4DDFD61B6715F50000FF28 /* IntTypeFormFieldSpec.swift in Sources */,
+				FB4DDFD41B670DB60000FF28 /* StringTypeFormFieldSpec.swift in Sources */,
 				FB4DDFBE1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift in Sources */,
 				FB1E7E8C1B628D4600F15B16 /* ModelFormSpec.swift in Sources */,
 				FB1E7E7D1B6286D600F15B16 /* Dog.swift in Sources */,

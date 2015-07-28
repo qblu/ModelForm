@@ -90,12 +90,11 @@
 				FB4DDF8B1B6430410000FF28 /* AppDelegate.swift */,
 				FB4DDF8D1B6430410000FF28 /* ViewController.swift */,
 				FB4DDF8F1B6430410000FF28 /* Main.storyboard */,
-				FB4DDF921B6430410000FF28 /* Images.xcassets */,
 				FB4DDF941B6430410000FF28 /* LaunchScreen.xib */,
-				FB4DDF891B6430410000FF28 /* Supporting Files */,
 				FB4DDFAD1B64373A0000FF28 /* ExampleModelFormDelegate.swift */,
 				FB4DDFAF1B6437690000FF28 /* JackalopeModelAdapter.swift */,
 				FB4DDFB11B64378C0000FF28 /* Jackalope.swift */,
+				FB4DDF891B6430410000FF28 /* Supporting Files */,
 			);
 			path = ExampleApp;
 			sourceTree = "<group>";
@@ -103,6 +102,7 @@
 		FB4DDF891B6430410000FF28 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FB4DDF921B6430410000FF28 /* Images.xcassets */,
 				FB4DDF8A1B6430410000FF28 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -435,6 +435,7 @@
 				FB4DDFA71B6430410000FF28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FB4DDFA81B6430410000FF28 /* Build configuration list for PBXNativeTarget "ExampleAppTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +444,7 @@
 				FB4DDFAA1B6430410000FF28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

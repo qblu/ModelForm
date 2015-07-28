@@ -12,4 +12,5 @@ public struct Dog {
     public var breed: String = ""
     public var heightInInches: Int = 0
     public var profilePhotoUrl: NSURL?
+    public var willBiteYou: Bool = false
 }

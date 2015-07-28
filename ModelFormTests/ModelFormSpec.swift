@@ -34,7 +34,8 @@ class ModelFormSpec: QuickSpec {
                     // implicit unwraps are ok here because each "value" was refected from an instance of this type.
                     breed: modelProperties["breed"]!.value as! String,
                     heightInInches: modelProperties["heightInInches"]!.value as! Int,
-                    profilePhotoUrl: (modelProperties["profilePhotoUrl"]!.value as? NSURL)
+                    profilePhotoUrl: (modelProperties["profilePhotoUrl"]!.value as? NSURL),
+                    willBiteYou: (modelProperties["willBiteYou"]!.value as! Bool)
                 )
                 return newDog
             }
@@ -52,7 +53,8 @@ class ModelFormSpec: QuickSpec {
                     let dog = Dog(
                         breed: "Laborador",
                         heightInInches: 32,
-                        profilePhotoUrl: NSURL(string: "http://cdn.akc.org/akcdoglovers/LabradorRetriever_hero.jpg")!
+                        profilePhotoUrl: NSURL(string: "http://cdn.akc.org/akcdoglovers/LabradorRetriever_hero.jpg")!,
+                        willBiteYou: false
                     )
                     
                     let testDelegate = TestDelegate()
@@ -67,13 +69,18 @@ class ModelFormSpec: QuickSpec {
                     
                     // update the value using the actor
                     formController.setFormPropertyValue("German Shepherd", forPropertyNamed: "breed")
+                    formController.setFormPropertyValue(36, forPropertyNamed: "heightInInches")
+                    formController.setFormPropertyValue(true, forPropertyNamed: "willBiteYou")
 
                     // save the change
                     formController.saveFormToModel()
                     
                     // check the new dog
                     if let dog2 = testDelegate.model as? Dog {
+                        Logger.logVerbose("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  DOG{willBiteYou:\(dog2.willBiteYou)}")
                         expect(dog2.breed).to(equal("German Shepherd"))
+                        expect(dog2.heightInInches).to(equal(36))
+                        expect(dog2.willBiteYou).to(beTrue())
                     } else {
                         fail("didn't get a new dog.  boo!")
                     }
@@ -88,19 +95,8 @@ class ModelFormSpec: QuickSpec {
                     } else {
                         fail("couldn't get the viewController")
                     }
-                    
-                    
-                
-                    
-                    
-                    
-                    
-                    
-                    
                 }
             }
-        
-            
         }
         
         describe("modelAdapter") {
@@ -110,7 +106,8 @@ class ModelFormSpec: QuickSpec {
                     let dog = Dog(
                         breed: "Poodle",
                         heightInInches: 30,
-                        profilePhotoUrl: NSURL(string: "http://www.yourpurebredpuppy.com/dogbreeds/photos-RS/standardpoodles-max.jpg")!
+                        profilePhotoUrl: NSURL(string: "http://www.yourpurebredpuppy.com/dogbreeds/photos-RS/standardpoodles-max.jpg")!,
+                        willBiteYou: false
                     )
 
                     let modelForm = ModelForm(model: dog, delegate: TestDelegate(), modelAdapter:dogAdapter)
@@ -128,7 +125,8 @@ class ModelFormSpec: QuickSpec {
                     let dog = Dog(
                         breed: "Laborador",
                         heightInInches: 32,
-                        profilePhotoUrl: NSURL(string: "http://cdn.akc.org/akcdoglovers/LabradorRetriever_hero.jpg")!
+                        profilePhotoUrl: NSURL(string: "http://cdn.akc.org/akcdoglovers/LabradorRetriever_hero.jpg")!,
+                        willBiteYou: false
                     )
                     
                     let modelForm = ModelForm(model: dog, delegate: TestDelegate(), modelAdapter:DogModelAdapter())

@@ -18,7 +18,7 @@ class ExampleModelFormDelegate: ModelFormDelegate {
         
         let jackalope = model as! Jackalope
         
-        Logger.logVerbose("model:{ catchPhrase: \"\(jackalope.catchPhrase)\"")
+        Logger.logVerbose("model:{ catchPhrase: \"\(jackalope.catchPhrase)\", contrived: \"\(jackalope.contrived)\", awesomenessScore: \"\(jackalope.awesomenessScore)\" }")
        
     }
 }

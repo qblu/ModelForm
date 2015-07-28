@@ -55,12 +55,11 @@ public struct ModelForm {
         self.modelAdapter = modelAdapter
         self.modelPropertyMirrorMap = ModelForm.reflectOnModel(model)
         self.formController.setModel(self.model, andModelForm: self)
-        
     }
 
     //MARK: Reflection (Inspect Model)
 
-    public func titlizeText(text: String) -> String{
+    public static func titlizeText(text: String) -> String{
         // I'm going to want to change field names into nicer label text so I might as well start pushing these things through the method and implement later
         return text
     }

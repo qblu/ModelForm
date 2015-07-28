@@ -11,28 +11,30 @@ class ModelFormViewController: UIViewController, ModelFormController {
     
     private var modelForm: ModelForm!
     private var model: Any!
+    private var formFieldFactory: FormFieldFactory = PropertyTypeFormFieldFactory()
+    private var propertyTypeFormFields: [String: PropertyTypeFormField]!
     private var formFields: [String: UIControl]!
     private var labels: [String: UILabel]!
     private var saveButton: UIButton!
     private var cancelButton: UIButton!
     
     //MARK: ModelFormController Protocol
-    
     func setModel(model: Any, andModelForm modelForm: ModelForm) {
         self.model = model
         self.modelForm = modelForm
-        
+        propertyTypeFormFields = createPropertyTypeFormFields(modelForm.modelPropertyMirrorMap)
         formFields = createFormFieldsForModel(modelForm.modelPropertyMirrorMap)
         labels = createLabelsForFormFields(formFields)
         createButtonsForForm()
     }
     
     func setFormPropertyValue(value:Any, forPropertyNamed name: String) {
-        if let formField = formFields[name] {
-            if var textField = formField as? UITextField, textValue = value as? String {
-                (formFields[name] as! UITextField).text = textValue
-                Logger.logVerbose(textField.debugDescription)
+        if let formField = formFields[name], propertyTypeField = propertyTypeFormFields[name] {
+            if(!propertyTypeField.updateValue(value, onFormField:formField)) {
+                Logger.logWarning("Form field could not update value [\(value)] for property named:\(name)")
             }
+        } else {
+            Logger.logWarning("Form field or proeprtyTypeField not found for property named:\(name)")
         }
     }
     
@@ -51,9 +53,16 @@ class ModelFormViewController: UIViewController, ModelFormController {
         
         for (name, formField) in self.formFields {
             Logger.logVerbose("name: \(name) is \(formField)")
-            let (found, text) = getFormFieldStringValue(formField)
-            if(found) {
-                updatedPropertyMap[name]!.value = text
+            if let propTypeField = propertyTypeFormFields[name] {
+                let (isValid, updatedValue) = propTypeField.getValueFromFormField(formField)
+                if( isValid) {
+                    Logger.logVerbose("updatedMap[ \(name) ] = \(updatedValue)")
+                    updatedPropertyMap[name]!.value = updatedValue
+                } else {
+                    Logger.logWarning("The provided value was invalid for propety named:\(name)")
+                }
+            } else {
+                Logger.logWarning("propertyTypeFormFields[name] failed to find a PropertyTypeFormFields for name:\(name)")
             }
         }
         
@@ -83,7 +92,7 @@ class ModelFormViewController: UIViewController, ModelFormController {
     func addControlsToView() {
         for (name, control) in formFields {
             //Coloring
-            control.backgroundColor = UIColor(red: 135/255, green: 222/255, blue: 212/255, alpha: 1)
+            //control.backgroundColor = UIColor(red: 135/255, green: 222/255, blue: 212/255, alpha: 1)
             // add to the view
             view.addSubview(control)
         }
@@ -92,8 +101,7 @@ class ModelFormViewController: UIViewController, ModelFormController {
     func addLabelsToView() {
         for (name, label) in labels {
             //Coloring
-            label.backgroundColor = UIColor(red: 255/255, green: 222/255, blue: 212/255, alpha: 1)
-            
+            //label.backgroundColor = UIColor(red: 255/255, green: 222/255, blue: 212/255, alpha: 1)
             // add to the view
             view.addSubview(label)
         }
@@ -125,13 +133,29 @@ class ModelFormViewController: UIViewController, ModelFormController {
             "topGuide": 20, //topLayoutGuide.length,
             "bottomGuide": bottomLayoutGuide.length,
             "verticalFieldMargin": 10,
-            "verticalLabelToFieldMargin": 5
+            "verticalLabelToFieldMargin": 5,
+            "horizontalMargin": 10
         ]
+        
+        let bottomSpacerView = UIView()
+        view.addSubview(bottomSpacerView)
+        
+        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|-[bottomSpacerView]-|",
+            options: NSLayoutFormatOptions.allZeros,
+            metrics: metrics, views: ["bottomSpacerView": bottomSpacerView]
+        )
+        bottomSpacerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        NSLayoutConstraint.activateConstraints(horizontalConstraints)
+
+        
+        var verticalConstraintViews = ["bottomSpacerView": bottomSpacerView]
+        
         
         // |-(==padding)-[imageView]->=0-[button]-(==padding)-|
         var verticalLayoutAscii = "V:|-topGuide-"
-        let verticalLayoutClose = "|"
-        var verticalConstraintViews = [String: UIView]()
+        let verticalLayoutClose = "[bottomSpacerView(>=1)]-|"
+        
         // Vertical constraints string pattern
         for (name, control) in formFields {
             
@@ -144,10 +168,12 @@ class ModelFormViewController: UIViewController, ModelFormController {
                 verticalConstraintViews["label_" + name] = label
                 // horizontal constraint for label
                 let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-                    "H:|[" + name + "]-|",
+                    "H:|-[" + name + "]-|",
                     options: NSLayoutFormatOptions.allZeros,
                     metrics: metrics, views: [name: label]
                 )
+                NSLayoutConstraint.activateConstraints(horizontalConstraints)
+
             }
             
             // layout form field
@@ -174,8 +200,8 @@ class ModelFormViewController: UIViewController, ModelFormController {
         
         Logger.logVerbose("\(saveButton)")
         let horizontalButtonConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[cancelButton]-[saveButton]-|",
-            options: NSLayoutFormatOptions.allZeros,
+            "H:|-[cancelButton(==saveButton)]-(==horizontalMargin)-[saveButton]-|",
+            options: NSLayoutFormatOptions.AlignAllCenterY,
             metrics: metrics,
             views: ["cancelButton": cancelButton, "saveButton": saveButton]
         )
@@ -209,31 +235,44 @@ class ModelFormViewController: UIViewController, ModelFormController {
     
     //MARK: UI Setup
     
-    func createTextField(fieldName: String, text: String) -> UITextField {
-        let textField = UITextField()
-        textField.text = text
-        textField.placeholder = modelForm.titlizeText(fieldName)
-        return textField
-    }
-    
-    
-    func createFormFieldsForModel( reflectedPropertyMap: [String: ModelForm.ModelPropertyMirror] ) -> [String: UIControl] {
-        var fields = [String: UIControl]()
+    func createPropertyTypeFormFields(reflectedPropertyMap: [String: ModelForm.ModelPropertyMirror] ) -> [String: PropertyTypeFormField] {
+        var fields = [String: PropertyTypeFormField]()
         
-        for (proeprtyName, mirror) in reflectedPropertyMap {
-            Logger.logVerbose("type:\(mirror.value.dynamicType), index: \(mirror.propertyIndex), field: \(mirror.name), value: \(mirror.value)")
-            if let stringValue = mirror.value as? String {
-                fields[mirror.name] = self.createTextField(mirror.name, text: stringValue)
+        for (propertyName, mirror) in reflectedPropertyMap {
+            if let field = formFieldFactory.createPropertyTypeFormField(mirror.value) {
+                fields[propertyName] = field
+            } else {
+                Logger.logWarning("Failed to create a PropertyTypeFormField for property: \(propertyName) having a type: \(mirror.value.dynamicType)")
             }
         }
         return fields
+    }
+    
+    func createFormFieldsForModel(reflectedPropertyMap: [String: ModelForm.ModelPropertyMirror] ) -> [String: UIControl] {
+        var fields = [String: UIControl]()
+        
+        for (propertyName, mirror) in reflectedPropertyMap {
+            Logger.logVerbose("type:\(mirror.value.dynamicType), index: \(mirror.propertyIndex), field: \(mirror.name), value: \(mirror.value)")
+            if let propertyTypeField = formFieldFactory.createPropertyTypeFormField(mirror.value) {
+                let formField = propertyTypeField.createFormField(mirror.name, value: mirror.value)
+                fields[mirror.name] = formField
+            } else {
+                Logger.logWarning("Failed to create a form field for property: \(propertyName) having a type: \(mirror.value.dynamicType)")
+            }
+        }
+        return fields
+    }
+    func styleLabel(label: UILabel) {
+        label.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
+        label.textColor = UIColor.grayColor()
     }
     
     func createLabelsForFormFields(formFields: [String: UIControl]) -> [String: UILabel] {
         var labels = [String: UILabel]()
         for (name, formField) in formFields {
             let label = UILabel()
-            label.text = modelForm.titlizeText(name)
+            label.text = ModelForm.titlizeText(name)
+            styleLabel(label)
             labels[name] = label
         }
         return labels
