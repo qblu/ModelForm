@@ -63,5 +63,16 @@ public class ModelFormValidationResult {
         
         validationItem.validationMessages.append(validationMessage)
     }
+    
+    public func mergeResults(mergeFrom: ModelFormValidationResult) {
+        for item in mergeFrom.validationItems {
+            if let matchingItem = findValidationItemWithName(item.propertyName) {
+                // might result in dups but...
+                matchingItem.validationMessages += item.validationMessages
+            } else {
+                validationItems.append(item)
+            }
+        }
+    }
 }
 

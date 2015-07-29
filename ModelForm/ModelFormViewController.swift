@@ -54,9 +54,9 @@ class ModelFormViewController: UIViewController, ModelFormController {
         
         // copy data from form to copy of property map
         var updatedPropertyMap = modelForm.modelPropertyMirrorMap
+        // create a master validation result
+        var masterValidationResult = ModelFormValidationResult()
        
-        //************************************
-        //TODO: merge validationReults
         
         for (name, formField) in self.formFields {
             Logger.logVerbose("name: \(name) is \(formField.description)")
@@ -66,9 +66,11 @@ class ModelFormViewController: UIViewController, ModelFormController {
                     Logger.logVerbose("updatedMap[ \(name) ] = \(updatedValue)")
                     updatedPropertyMap[name]!.value = updatedValue
                 } else {
+                    masterValidationResult.mergeResults(validationResult)
                     Logger.logWarning("The provided value was invalid for propety named:\(name)")
                 }
             } else {
+                masterValidationResult.recordValidationViolation(name, validationMessage: "Unrecognizd Field")
                 Logger.logWarning("propertyTypeFormFields[name] failed to find a PropertyTypeFormFields for name:\(name)")
             }
         }
@@ -77,22 +79,19 @@ class ModelFormViewController: UIViewController, ModelFormController {
         // The details for how to do this are up to the consumer.  At this time, and to the best of my knowledge,
         // this is not possible to do dynamically using Swift's present reflection capabilities.
         let result = self.modelForm.modelAdapter.initializeModel(updatedPropertyMap)
+        // merge any validation results
+        masterValidationResult.mergeResults(result.validationResult)
         
-        // tell delegate to save changes
-        let mf: ModelForm = self.modelForm
-        let m: Any = result.value
-        let fc: ModelFormController = self
-        let vr: ModelFormValidationResult = result.validationResult
-        
-        if(result.validationResult.valid) {
-            self.modelForm.delegate.modelForm(mf, didSaveModel: m, fromModelFormController: fc)
+        // tell delegate to save changes or that validation failed
+        if(masterValidationResult.valid) {
+            self.modelForm.delegate.modelForm(self.modelForm, didSaveModel: result.value, fromModelFormController: self)
         } else {
             // tell delegate to save changes
-            self.modelForm.delegate.modelForm(mf, didFailValidationWithResult: vr, fromModelFormController: fc)
+            self.modelForm.delegate.modelForm(self.modelForm, didFailValidationWithResult: masterValidationResult, fromModelFormController: self)
         }
         
-        Logger.logVerbose("saveFormToModel() -> valid:\(result.validationResult.valid), validationMessages: \(result.validationResult.validationItems)")
-        return result.validationResult
+        Logger.logVerbose("saveFormToModel() -> valid:\(masterValidationResult.valid), validationMessages: \(masterValidationResult.validationItems.map{item in return item.validationMessages})")
+        return masterValidationResult
     }
     
     //MARK: UIViewController Lifecycle

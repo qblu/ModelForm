@@ -79,6 +79,34 @@ class ModelFormValidationResultSpec: QuickSpec {
                 
             }
         }
+        
+        describe(".mergeResults") {
+            
+            context("When result items have propertyName matches") {
+                it("combines matching items") {
+                    var results1 = ModelFormValidationResult()
+                    results1.recordValidationViolation("match1", validationMessage: "I'm a message")
+                    results1.recordValidationViolation("match2", validationMessage: "I'm a message 2")
+                    results1.recordValidationViolation("notamatch1", validationMessage: "I'm a message 3")
+                    results1.recordValidationViolation("match3", validationMessage: "I'm a message 4")
+                    results1.recordValidationViolation("notamatch2", validationMessage: "I'm a message 5")
+
+                
+                    var results2 = ModelFormValidationResult()
+                    
+                    results2.recordValidationViolation("notamatch3", validationMessage: "I'm a message 6")
+                    results2.recordValidationViolation("match3", validationMessage: "I'm a message 7")
+                    results2.recordValidationViolation("match1", validationMessage: "I'm a message 8")
+                    results2.recordValidationViolation("match2", validationMessage: "I'm a message 9")
+                    results2.recordValidationViolation("notamatch4", validationMessage: "I'm a message 10")
+                    
+                    results1.mergeResults(results2)
+                    
+                    expect(results1.validationItems.count).to(equal(7))
+                    expect(results1.findValidationItemWithName("match1")?.validationMessages.count).to(equal(2))
+}
+            }
+        }
     }
 }
 
