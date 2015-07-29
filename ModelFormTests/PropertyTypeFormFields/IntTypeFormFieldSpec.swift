@@ -43,8 +43,8 @@ class IntTypeFormFieldSpec: QuickSpec {
                 it("returns valid whole number as Int") {
                     let textField = UITextField()
                     textField.text = "99"
-                    let (valid, value) = IntTypeFormField().getValueFromFormField(textField)
-                    expect(valid).to(beTrue())
+                    let (validationResult, value) = IntTypeFormField().getValueFromFormField(textField, forPropertyNamed: "doesnt_matter")
+                    expect(validationResult.valid).to(beTrue())
                     
                     expect((value as! Int)).to(equal(99))
                 }
@@ -55,16 +55,48 @@ class IntTypeFormFieldSpec: QuickSpec {
                 it("returns 0 or 1 accordingly") {
                     let switchControl = UISwitch()
                     switchControl.on = true
-                    let (valid, value) = IntTypeFormField().getValueFromFormField(switchControl)
-                    expect(valid).to(beTrue())
+                    let (validationResult, value) = IntTypeFormField().getValueFromFormField(switchControl, forPropertyNamed: "yep")
+                    expect(validationResult.valid).to(beTrue())
                     expect((value as! Int)).to(equal(1))
 
                 
                     switchControl.on = false
-                    let (valid2, value2) = IntTypeFormField().getValueFromFormField(switchControl)
-                    expect(valid2).to(beTrue())
+                    let (validationResult2, value2) = IntTypeFormField().getValueFromFormField(switchControl, forPropertyNamed: "hi ho")
+                    expect(validationResult2.valid).to(beTrue())
                     expect((value2 as! Int)).to(equal(0))
 }
+            }
+        }
+        
+        describe(".updateValue(onFormField) ") {
+            context("When a whole number is given") {
+                it("sets the value and returns valid result") {
+                    var textField = UITextField()
+                    let validationResult = IntTypeFormField().updateValue(999, onFormField:textField, forPropertyNamed: "goofy")
+                    expect(validationResult.valid).to(beTrue())
+                    expect(textField.text).to(equal("999"))
+
+                }
+            }
+            
+            pending("When a float number is given") {
+                it("sets the rounded value and returns invalid result") {
+                    
+                    // not sure if this is even desirable.  It requires a NumberFormatter and just not going to go that far today
+                    var textField = UITextField()
+                    let validationResult = IntTypeFormField().updateValue(99.9, onFormField:textField, forPropertyNamed: "goofy")
+                    expect(validationResult.valid).to(beFalse())
+                    expect(textField.text).to(equal("100"))
+                }
+            }
+            
+            context("When a string is given") {
+                it("sets 0 and returns invalid result") {
+                    var textField = UITextField()
+                    let validationResult = IntTypeFormField().updateValue("whoa", onFormField:textField, forPropertyNamed: "goofy")
+                    expect(validationResult.valid).to(beFalse())
+                    expect(textField.text).to(equal(""))
+                }
             }
         }
     }

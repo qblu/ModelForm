@@ -21,22 +21,22 @@ public struct StringTypeFormField: PropertyTypeFormField {
         return textField
     }
     
-    public func getValueFromFormField(formField: UIControl) -> (valid: Bool, value: Any) {
+    public func getValueFromFormField(formField: UIControl, forPropertyNamed propertyName: String) -> (validationResult: ModelFormValidationResult, value: Any) {
         if let textField = formField as? UITextField {
-            return (valid: true, value: textField.text)
+            return (validationResult: ModelFormValidationResult.validResult(), value: textField.text)
         } else {
             Logger.logWarning("Unexpected form field type:[\(formField.dynamicType)] sent to StringTypeFormField.getValueFromFormField()")
-            return (valid: false, value: "")
+            return (validationResult:ModelFormValidationResult(invalidPropertyName: propertyName, validationMessage: "The form field provided for update was of the wrong type.  Expected a UITextField."), value: "")
         }
     }
     
-    public func updateValue(value: Any, onFormField formField: UIControl) -> Bool {
+    public func updateValue(value: Any, onFormField formField: UIControl, forPropertyNamed name: String) -> ModelFormValidationResult {
         if let textField = formField as? UITextField {
             textField.text = "\(value)"
-            return true
+            return ModelFormValidationResult.validResult()
         } else {
             Logger.logWarning("Unexpected form field type:[\(formField.dynamicType)] sent to StringTypeFormField.updateValue()")
-            return false
+            return ModelFormValidationResult(invalidPropertyName: name, validationMessage: "The form field provided for update was of the wrong type.  Expected a UISwitch.")
         }
     }
 

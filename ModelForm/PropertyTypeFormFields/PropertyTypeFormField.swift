@@ -9,6 +9,6 @@
 public protocol PropertyTypeFormField {
     init()
     func createFormField(fieldName: String, value: Any) -> UIControl
-    func getValueFromFormField(formField: UIControl) -> (valid: Bool, value: Any)
-    func updateValue(value: Any, onFormField formField: UIControl) -> Bool
+    func getValueFromFormField(formField: UIControl, forPropertyNamed: String) -> (validationResult: ModelFormValidationResult, value: Any)
+    func updateValue(value: Any, onFormField formField: UIControl, forPropertyNamed: String) -> ModelFormValidationResult
 }

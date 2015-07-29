@@ -42,8 +42,8 @@ class StringTypeFormFieldSpec: QuickSpec {
                 it("returns the valid text") {
                     let textField = UITextField()
                     textField.text = "Nifty"
-                    let (valid, value) = StringTypeFormField().getValueFromFormField(textField)
-                    expect(valid).to(beTrue())
+                    let (validationResult, value) = StringTypeFormField().getValueFromFormField(textField, forPropertyNamed: "whatever")
+                    expect(validationResult.valid).to(beTrue())
                     
                     expect((value as! String)).to(equal("Nifty"))
                 }
@@ -54,8 +54,8 @@ class StringTypeFormFieldSpec: QuickSpec {
                 it("returns an empty string") {
                     let switchControl = UISwitch()
                     switchControl.on = true
-                    let (valid, value) = StringTypeFormField().getValueFromFormField(switchControl)
-                    expect(valid).to(beFalse())
+                    let (validationResult, value) = StringTypeFormField().getValueFromFormField(switchControl, forPropertyNamed: "lastone")
+                    expect(validationResult.valid).to(beFalse())
                     expect((value as! String)).to(equal(""))
                 }
             }

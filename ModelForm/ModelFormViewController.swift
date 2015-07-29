@@ -28,14 +28,18 @@ class ModelFormViewController: UIViewController, ModelFormController {
         createButtonsForForm()
     }
     
-    func setFormPropertyValue(value:Any, forPropertyNamed name: String) {
+    func setFormPropertyValue(value:Any, forPropertyNamed name: String) -> ModelFormValidationResult {
+        let validationResult = ModelFormValidationResult()
         if let formField = formFields[name], propertyTypeField = propertyTypeFormFields[name] {
-            if(!propertyTypeField.updateValue(value, onFormField:formField)) {
+            if(!propertyTypeField.updateValue(value, onFormField:formField, forPropertyNamed: name).valid) {
+                validationResult.recordValidationViolation(name, validationMessage: "Form field failed to update value")
                 Logger.logWarning("Form field could not update value [\(value)] for property named:\(name)")
             }
         } else {
+            validationResult.recordValidationViolation(name, validationMessage: "Field name not recognized")
             Logger.logWarning("Form field or proeprtyTypeField not found for property named:\(name)")
         }
+        return validationResult
     }
     
     func getFormFieldStringValue(formField: UIControl) -> (found: Bool, text: String) {
@@ -46,16 +50,19 @@ class ModelFormViewController: UIViewController, ModelFormController {
         return (found:false, text: "")
     }
     
-    func saveFormToModel() {
+    func saveFormToModel() -> ModelFormValidationResult {
         
         // copy data from form to copy of property map
         var updatedPropertyMap = modelForm.modelPropertyMirrorMap
+       
+        //************************************
+        //TODO: merge validationReults
         
         for (name, formField) in self.formFields {
-            Logger.logVerbose("name: \(name) is \(formField)")
+            Logger.logVerbose("name: \(name) is \(formField.description)")
             if let propTypeField = propertyTypeFormFields[name] {
-                let (isValid, updatedValue) = propTypeField.getValueFromFormField(formField)
-                if( isValid) {
+                let (validationResult, updatedValue) = propTypeField.getValueFromFormField(formField, forPropertyNamed:name)
+                if( validationResult.valid) {
                     Logger.logVerbose("updatedMap[ \(name) ] = \(updatedValue)")
                     updatedPropertyMap[name]!.value = updatedValue
                 } else {
@@ -69,10 +76,23 @@ class ModelFormViewController: UIViewController, ModelFormController {
         // pass the updated property map to the model adapter.  A new model will be initialized from this map.
         // The details for how to do this are up to the consumer.  At this time, and to the best of my knowledge,
         // this is not possible to do dynamically using Swift's present reflection capabilities.
-        let updatedModel = self.modelForm.modelAdapter.initializeModel(updatedPropertyMap)
+        let result = self.modelForm.modelAdapter.initializeModel(updatedPropertyMap)
         
         // tell delegate to save changes
-        self.modelForm.delegate.modelForm(self.modelForm, didSaveModel: updatedModel, fromModelFormController: self)
+        let mf: ModelForm = self.modelForm
+        let m: Any = result.value
+        let fc: ModelFormController = self
+        let vr: ModelFormValidationResult = result.validationResult
+        
+        if(result.validationResult.valid) {
+            self.modelForm.delegate.modelForm(mf, didSaveModel: m, fromModelFormController: fc)
+        } else {
+            // tell delegate to save changes
+            self.modelForm.delegate.modelForm(mf, didFailValidationWithResult: vr, fromModelFormController: fc)
+        }
+        
+        Logger.logVerbose("saveFormToModel() -> valid:\(result.validationResult.valid), validationMessages: \(result.validationResult.validationItems)")
+        return result.validationResult
     }
     
     //MARK: UIViewController Lifecycle

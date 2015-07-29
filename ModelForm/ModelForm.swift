@@ -10,23 +10,21 @@ import Foundation
 
 /// Receives delegation of model change events
 public protocol ModelFormDelegate {
-    func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormController formController: ModelFormController)
+    func modelForm(modelForm: ModelForm, didSaveModel: Any, fromModelFormController formController: ModelFormController)
+    func modelForm(modelForm: ModelForm, didFailValidationWithResult validationResult: ModelFormValidationResult, fromModelFormController: ModelFormController)
 }
 
 ///
 public protocol ModelFormController {
     func setModel(model: Any, andModelForm modelForm: ModelForm)
-    func setFormPropertyValue(value:Any, forPropertyNamed name: String)
-    func saveFormToModel()
+    func setFormPropertyValue(value:Any, forPropertyNamed name: String) -> ModelFormValidationResult
+    func saveFormToModel() -> ModelFormValidationResult
 }
 
 public protocol ModelFormModelAdapter {
-    func initializeModel(modelProperties:[String: ModelForm.ModelPropertyMirror]) -> Any
+    func initializeModel(modelProperties:[String: ModelForm.ModelPropertyMirror]) -> (validationResult:ModelFormValidationResult, value: Any)
 }
 
-protocol ModelFormSerializable {
-    init(dictionary: [String: Any])
-}
 
 
 public struct ModelForm {

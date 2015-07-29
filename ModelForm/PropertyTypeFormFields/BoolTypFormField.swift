@@ -21,23 +21,26 @@ public struct BoolTypeFormField: PropertyTypeFormField {
         return field
     }
     
-    public func getValueFromFormField(formField: UIControl) -> (valid: Bool, value: Any) {
+    public func getValueFromFormField(formField: UIControl, forPropertyNamed propertyName: String) -> (validationResult: ModelFormValidationResult, value: Any) {
         if let field = formField as? UISwitch {
             let switchIsOn: Bool = field.on
-            return (valid: true, value: switchIsOn)
+            return (validationResult: ModelFormValidationResult.validResult(), value: switchIsOn)
         } else {
             Logger.logWarning("Unexpected form field type:[\(formField.dynamicType)] sent to BoolTypeFormField.getValueFromFormField()")
-            return (valid: false, value: false)
+            return (validationResult:ModelFormValidationResult(invalidPropertyName: propertyName, validationMessage: "The form field provided for update was of the wrong type.  Expected a UISwitch."), value: false)
+          
         }
     }
     
-    public func updateValue(value: Any, onFormField formField: UIControl) -> Bool {
+    public func updateValue(value: Any, onFormField formField: UIControl, forPropertyNamed name: String) -> ModelFormValidationResult {
         if let field = formField as? UISwitch, castValue = value as? Bool {
             field.setOn(castValue, animated: true)
-            return true
+            return ModelFormValidationResult.validResult()
         } else {
             Logger.logWarning("Unexpected form field type:[\(formField.dynamicType)] or value type:[\(value.dynamicType)] sent to BoolTypeFormField.updateValue()")
-            return false
+            var validationresult = ModelFormValidationResult()
+            validationresult.recordValidationViolation(name, validationMessage: "The form field used for update was not of the correct type.  Expected a UISwitch.")
+            return validationresult
         }
     }
     

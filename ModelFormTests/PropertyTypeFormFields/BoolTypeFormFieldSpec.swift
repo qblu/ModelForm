@@ -45,13 +45,13 @@ class BoolTypeFormFieldSpec: QuickSpec {
                 it("returns on state as bool") {
                     let field = UISwitch()
                     field.on = true
-                    let (valid, value) = BoolTypeFormField().getValueFromFormField(field)
-                    expect(valid).to(beTrue())
+                    let (validationResult, value) = BoolTypeFormField().getValueFromFormField(field, forPropertyNamed: "doesnt_matter")
+                    expect(validationResult.valid).to(beTrue())
                     expect((value as! Bool)).to(beTrue())
                     
                     field.on = false
-                    let (valid2, value2) = BoolTypeFormField().getValueFromFormField(field)
-                    expect(valid2).to(beTrue())
+                    let (validationResult2, value2) = BoolTypeFormField().getValueFromFormField(field, forPropertyNamed: "doesnt_matter")
+                    expect(validationResult2.valid).to(beTrue())
                     expect((value2 as! Bool)).to(beFalse())
                 }
             }
@@ -61,14 +61,14 @@ class BoolTypeFormFieldSpec: QuickSpec {
                 it("returns 0 or 1 accordingly") {
                     let switchControl = UISwitch()
                     switchControl.on = true
-                    let (valid, value) = IntTypeFormField().getValueFromFormField(switchControl)
-                    expect(valid).to(beTrue())
+                    let (validationResult, value) = IntTypeFormField().getValueFromFormField(switchControl, forPropertyNamed: "doesnt_matter")
+                    expect(validationResult.valid).to(beTrue())
                     expect((value as! Int)).to(equal(1))
                     
                     
                     switchControl.on = false
-                    let (valid2, value2) = IntTypeFormField().getValueFromFormField(switchControl)
-                    expect(valid2).to(beTrue())
+                    let (validationResult2, value2) = IntTypeFormField().getValueFromFormField(switchControl, forPropertyNamed: "doesnt_matter")
+                    expect(validationResult2.valid).to(beTrue())
                     expect((value2 as! Int)).to(equal(0))
                 }
             }
@@ -81,13 +81,13 @@ class BoolTypeFormFieldSpec: QuickSpec {
                 it("returns on state as bool") {
                     let field = UISwitch()
                     field.on = false
-                    let success = BoolTypeFormField().updateValue(true, onFormField: field)
+                    let success = BoolTypeFormField().updateValue(true, onFormField: field, forPropertyNamed: "YesMan").valid
                     expect(success).to(beTrue())
                     expect(field.on).to(beTrue())
                     
                     let field2 = UISwitch()
                     field2.on = true
-                    let success2 = BoolTypeFormField().updateValue(false, onFormField: field2)
+                    let success2 = BoolTypeFormField().updateValue(false, onFormField: field2, forPropertyNamed: "YesMan").valid
                     expect(success2).to(beTrue())
                     expect(field2.on).to(beFalse())
                 }

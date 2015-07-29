@@ -11,35 +11,36 @@ import Quick
 import Nimble
 import ModelForm
 
+class TestDogDelegate: ModelFormDelegate {
+    
+    var model: Any? = nil
+    var viewController: UIViewController? = nil
+    var validationResult: ModelFormValidationResult? = nil
+    
+    func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormController formController: ModelFormController) {
+        self.model = model
+        if let modelFormViewController = formController as? UIViewController {
+            self.viewController = modelFormViewController
+        }
+    }
+    
+    func modelForm(
+        modelForm: ModelForm,
+        didFailValidationWithResult validationResult: ModelFormValidationResult,
+        fromModelFormController formController: ModelFormController
+        ) {
+            self.validationResult = validationResult
+            if let modelFormViewController = formController as? UIViewController {
+                self.viewController = modelFormViewController
+            }
+    }
+}
+
+
 class ModelFormSpec: QuickSpec {
     
     override func spec() {
         
-        class TestDelegate: ModelFormDelegate {
-            
-            var model: Any? = nil
-            var viewController: UIViewController? = nil
-            
-            func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormController formController: ModelFormController) {
-                self.model = model
-                if let modelFormViewController = formController as? UIViewController {
-                    self.viewController = modelFormViewController
-                }
-            }
-        }
-        
-        struct DogModelAdapter: ModelFormModelAdapter {
-            func initializeModel(modelProperties:[String: ModelForm.ModelPropertyMirror]) -> Any {
-                let newDog = Dog(
-                    // implicit unwraps are ok here because each "value" was refected from an instance of this type.
-                    breed: modelProperties["breed"]!.value as! String,
-                    heightInInches: modelProperties["heightInInches"]!.value as! Int,
-                    profilePhotoUrl: (modelProperties["profilePhotoUrl"]!.value as? NSURL),
-                    willBiteYou: (modelProperties["willBiteYou"]!.value as! Bool)
-                )
-                return newDog
-            }
-        }
         
         beforeEach { /* Executes before each test and prior to nested beforeEach */ }
         
@@ -57,7 +58,7 @@ class ModelFormSpec: QuickSpec {
                         willBiteYou: false
                     )
                     
-                    let testDelegate = TestDelegate()
+                    let testDelegate = TestDogDelegate()
                     let modelForm = ModelForm(model:dog, delegate: testDelegate, modelAdapter:DogModelAdapter())
                     let formController = modelForm.formController
                     
@@ -110,7 +111,7 @@ class ModelFormSpec: QuickSpec {
                         willBiteYou: false
                     )
 
-                    let modelForm = ModelForm(model: dog, delegate: TestDelegate(), modelAdapter:dogAdapter)
+                    let modelForm = ModelForm(model: dog, delegate: TestDogDelegate(), modelAdapter:dogAdapter)
                     let properties = modelForm.modelPropertyMirrorMap
                 }
             }
@@ -129,7 +130,7 @@ class ModelFormSpec: QuickSpec {
                         willBiteYou: false
                     )
                     
-                    let modelForm = ModelForm(model: dog, delegate: TestDelegate(), modelAdapter:DogModelAdapter())
+                    let modelForm = ModelForm(model: dog, delegate: TestDogDelegate(), modelAdapter:DogModelAdapter())
                     let properties = modelForm.modelPropertyMirrorMap
                     
                     var foundBreedProp = false

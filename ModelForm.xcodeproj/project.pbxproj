@@ -17,6 +17,8 @@
 		FB1E7E8C1B628D4600F15B16 /* ModelFormSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */; };
 		FB1E7E8E1B62922E00F15B16 /* ModelForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */; };
 		FB1E7E901B62AC1800F15B16 /* ReflectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */; };
+		FB3C89A61B6826F30093A3C0 /* ModelFormValidationResultSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C89A51B6826F30093A3C0 /* ModelFormValidationResultSpec.swift */; };
+		FB3C89A81B6846100093A3C0 /* ModelFormModelAdapterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3C89A71B6846100093A3C0 /* ModelFormModelAdapterSpec.swift */; };
 		FB4DDFB81B666FE30000FF28 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */; };
 		FB4DDFB91B666FE30000FF28 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */; };
 		FB4DDFBB1B66701C0000FF28 /* CleanroomLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -32,8 +34,7 @@
 		FB4DDFD61B6715F50000FF28 /* IntTypeFormFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD51B6715F50000FF28 /* IntTypeFormFieldSpec.swift */; };
 		FB4DDFD81B671C860000FF28 /* IntTypeFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD71B671C860000FF28 /* IntTypeFormField.swift */; };
 		FB4DDFDA1B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4DDFD91B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift */; };
-		FB5A2E151B67DE73009E7177 /* ModelFormValidationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A2E141B67DE73009E7177 /* ModelFormValidationItem.swift */; };
-		FB5A2E171B67DE9A009E7177 /* ModelFormValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A2E161B67DE9A009E7177 /* ModelFormValidationResult.swift */; };
+		FB5A2E151B67DE73009E7177 /* ModelFormValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A2E141B67DE73009E7177 /* ModelFormValidationResult.swift */; };
 		FBC615AB1B673D7800A529FF /* BoolTypeFormFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC615AA1B673D7800A529FF /* BoolTypeFormFieldSpec.swift */; };
 		FBC615AD1B673EBD00A529FF /* BoolTypFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC615AC1B673EBD00A529FF /* BoolTypFormField.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,8 @@
 		FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormSpec.swift; sourceTree = "<group>"; };
 		FB1E7E8D1B62922E00F15B16 /* ModelForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelForm.swift; sourceTree = "<group>"; };
 		FB1E7E8F1B62AC1800F15B16 /* ReflectionUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectionUtils.swift; sourceTree = "<group>"; };
+		FB3C89A51B6826F30093A3C0 /* ModelFormValidationResultSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormValidationResultSpec.swift; sourceTree = "<group>"; };
+		FB3C89A71B6846100093A3C0 /* ModelFormModelAdapterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormModelAdapterSpec.swift; sourceTree = "<group>"; };
 		FB4DDFB31B666F170000FF28 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		FB4DDFB61B666FE30000FF28 /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/iOS/CleanroomLogger.framework; sourceTree = "<group>"; };
 		FB4DDFB71B666FE30000FF28 /* CleanroomASL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomASL.framework; path = Carthage/Build/iOS/CleanroomASL.framework; sourceTree = "<group>"; };
@@ -102,8 +105,7 @@
 		FB4DDFD51B6715F50000FF28 /* IntTypeFormFieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTypeFormFieldSpec.swift; sourceTree = "<group>"; };
 		FB4DDFD71B671C860000FF28 /* IntTypeFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTypeFormField.swift; sourceTree = "<group>"; };
 		FB4DDFD91B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTypeFormFieldFactory.swift; sourceTree = "<group>"; };
-		FB5A2E141B67DE73009E7177 /* ModelFormValidationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormValidationItem.swift; sourceTree = "<group>"; };
-		FB5A2E161B67DE9A009E7177 /* ModelFormValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormValidationResult.swift; sourceTree = "<group>"; };
+		FB5A2E141B67DE73009E7177 /* ModelFormValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFormValidationResult.swift; sourceTree = "<group>"; };
 		FBC615AA1B673D7800A529FF /* BoolTypeFormFieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolTypeFormFieldSpec.swift; sourceTree = "<group>"; };
 		FBC615AC1B673EBD00A529FF /* BoolTypFormField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolTypFormField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,9 +183,10 @@
 				FB5A2E0F1B67DE3A009E7177 /* Validation */,
 				FB4DDFD21B670DA00000FF28 /* PropertyTypeFormFields */,
 				FB1E7E7B1B6286A100F15B16 /* TestModels */,
-				FB1E7E6F1B62867A00F15B16 /* Supporting Files */,
 				FB1E7E8B1B628D4600F15B16 /* ModelFormSpec.swift */,
 				FB4DDFBD1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift */,
+				FB3C89A71B6846100093A3C0 /* ModelFormModelAdapterSpec.swift */,
+				FB1E7E6F1B62867A00F15B16 /* Supporting Files */,
 			);
 			path = ModelFormTests;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 		FB5A2E0F1B67DE3A009E7177 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
+				FB3C89A51B6826F30093A3C0 /* ModelFormValidationResultSpec.swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -247,8 +251,7 @@
 		FB5A2E131B67DE73009E7177 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				FB5A2E141B67DE73009E7177 /* ModelFormValidationItem.swift */,
-				FB5A2E161B67DE9A009E7177 /* ModelFormValidationResult.swift */,
+				FB5A2E141B67DE73009E7177 /* ModelFormValidationResult.swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -362,11 +365,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB5A2E171B67DE9A009E7177 /* ModelFormValidationResult.swift in Sources */,
 				FB4DDFCF1B670BCF0000FF28 /* PropertyTypeFormField.swift in Sources */,
 				FB4DDFC61B667E9E0000FF28 /* ModelFormViewController.swift in Sources */,
 				FBC615AD1B673EBD00A529FF /* BoolTypFormField.swift in Sources */,
-				FB5A2E151B67DE73009E7177 /* ModelFormValidationItem.swift in Sources */,
+				FB5A2E151B67DE73009E7177 /* ModelFormValidationResult.swift in Sources */,
 				FB1E7E901B62AC1800F15B16 /* ReflectionUtils.swift in Sources */,
 				FB4DDFC21B6675000000FF28 /* ModelFormLogger.swift in Sources */,
 				FB4DDFDA1B6724DC0000FF28 /* PropertyTypeFormFieldFactory.swift in Sources */,
@@ -380,9 +382,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB3C89A61B6826F30093A3C0 /* ModelFormValidationResultSpec.swift in Sources */,
 				FBC615AB1B673D7800A529FF /* BoolTypeFormFieldSpec.swift in Sources */,
 				FB4DDFD61B6715F50000FF28 /* IntTypeFormFieldSpec.swift in Sources */,
 				FB4DDFD41B670DB60000FF28 /* StringTypeFormFieldSpec.swift in Sources */,
+				FB3C89A81B6846100093A3C0 /* ModelFormModelAdapterSpec.swift in Sources */,
 				FB4DDFBE1B6670750000FF28 /* ModelFormTestsQuickSpecConfiguration.swift in Sources */,
 				FB1E7E8C1B628D4600F15B16 /* ModelFormSpec.swift in Sources */,
 				FB1E7E7D1B6286D600F15B16 /* Dog.swift in Sources */,

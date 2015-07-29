@@ -12,6 +12,7 @@ class ExampleModelFormDelegate: ModelFormDelegate {
     
     var model: Any? = nil
     var viewController: UIViewController? = nil
+    var validationResult: ModelFormValidationResult? = nil
     
     func modelForm(modelForm: ModelForm, didSaveModel model: Any, fromModelFormController formController: ModelFormController) {
         self.model = model
@@ -21,4 +22,18 @@ class ExampleModelFormDelegate: ModelFormDelegate {
         Logger.logVerbose("model:{ catchPhrase: \"\(jackalope.catchPhrase)\", contrived: \"\(jackalope.contrived)\", awesomenessScore: \"\(jackalope.awesomenessScore)\" }")
        
     }
+
+    
+    func modelForm(
+        modelForm: ModelForm,
+        didFailValidationWithResult validationResult: ModelFormValidationResult,
+        fromModelFormController formController: ModelFormController
+        ) {
+            self.validationResult = validationResult
+            if let modelFormViewController = formController as? UIViewController {
+                self.viewController = modelFormViewController
+            }
+    }
+
+    
 }
